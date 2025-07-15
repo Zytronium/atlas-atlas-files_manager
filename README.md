@@ -1,12 +1,28 @@
 # Files Manager Express
 
-WIP readme
+Files Manager Express is a Node.js backend project that demonstrates key
+backend development concepts, including token-based user authentication,
+file management, database integration, background processing, and API design.
+
+The platform provides a simple API for uploading, managing, and
+viewing files, with features such as:
+
+* Token-based user authentication
+* File listing with pagination support
+* File upload functionality
+* Permission management for files (public/private)
+* Viewing and accessing file content
+* Automatic thumbnail generation for image files
+
+This project was designed as a learning exercise to bring together core
+backend technologies like Node.js, MongoDB, Redis, and background workers
+into a cohesive application.
 
 ----
 
 ## Authors
 [Daniel Stelljes](https://github.com/Zytronium)  
-[Tsimmuaj Yang](https://github.com/Jimwall0)  
+[Tsimmuaj Yang](https://github.com/Jimwall0)
 
 ----
 
@@ -23,14 +39,14 @@ WIP readme
 - [ ] ​9. Image Thumbnails (0/11 pts)
 
 
-- [ ] Readme
+- [X] Readme
 - [ ] **Everything Done ✓** (0/111 pts) - 0%
 
 ---
 
 >### Progress Goals:
-><strong>Monday, July 14: 5% (6 pts)</strong>  
-<em style="color: gray">Tuesday, July 15: 15% (17 pts)</em>  
+>Monday, July 14: 5% (6 pts)  
+<strong>Tuesday, July 15: 15% (17 pts)</strong>  
 <em style="color: gray">Wednesday, July 16: 30% (33 pts)</em>
 <em style="color: gray">Thursday, July 17: 50% (55 pts)</em>  
 <em style="color: gray">Friday, July 18: 65% (72 pts)</em>
