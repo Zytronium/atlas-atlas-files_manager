@@ -39,28 +39,32 @@ Finally, remember to gitignore `.env` if you commit these changes.
 
 ---
 
+[//]: # (Note: Points here are based on progress on the task and how much of that task is working; not how many points it gets when graded, since there is no checker for this project.)
+
 ### ✅ Tasks checklist:
-- [X] ​0. Redis Utils (12/12 pts)
-- [X] ​1. MongoDB Utils (11/11 pts)
-- [ ] ​2. First API (0/11 pts)
-- [ ] ​3. Create a new user (0/11 pts)
-- [ ] ​4. Authenticate a user (0/11 pts)
-- [ ] ​5. First file (0/11 pts)
-- [ ] ​6. Get and list file (0/11 pts)
-- [ ] ​7. File publish/unpublish (0/11 pts)
-- [ ] ​8. File data (0/11 pts)
-- [ ] ​9. Image Thumbnails (0/11 pts)
+Tasks marked with a `D` are assigned to Daniel and tasks marked with a `T` are assigned to Tsim.
+
+- [X] ​0. Redis Utils (12/12 pts) `D`
+- [X] ​1. MongoDB Utils (11/11 pts) `D`
+- [X] ​2. First API (11/11 pts) `D`
+- [ ] ​3. Create a new user (0/11 pts) `D`
+- [ ] ​4. Authenticate a user (0/11 pts) `D`
+- [ ] ​5. First file (0/11 pts) `T`
+- [ ] ​6. Get and list file (0/11 pts) `T`
+- [ ] ​7. File publish/unpublish (0/11 pts) `T`
+- [ ] ​8. File data (0/11 pts) `T`
+- [ ] ​9. Image Thumbnails (0/11 pts) ` `
 
 
 - [X] Readme
-- [ ] **Everything Done ✓** (23/111 pts) - 21%
+- [ ] **Everything Done ✓** (34/111 pts) - 31%
 
 ---
 
 >### Progress Goals:
 >Monday, July 14: 5% (6 pts) ✓  
 Tuesday, July 15: 15% (17 pts) ✓  
-<strong>Wednesday, July 16: 30% (33 pts)</strong>  
+<strong>Wednesday, July 16: 30% (33 pts)</strong> ✓  
 <em style="color: gray">Thursday, July 17: 50% (55 pts)</em>  
 <em style="color: gray">Friday, July 18: 65% (72 pts)</em>  
 <em style="color: gray">Saturday/Sunday, July 19-20: 75% (83 pts)</em>  
