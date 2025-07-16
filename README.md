@@ -20,7 +20,58 @@ into a cohesive application.
 
 ---
 
-Note: if you wish to use a `.env` file for environment variables, you should
+## Usage
+Install Redis and MongoDB and have them both running for this to work.
+If the host fo the Mongo DB is specified as something other than localhost,
+MongoDB does not need to be running locally.
+
+Installing and running Redis and MongoDB may vary depending on your OS.
+
+### Installing (On Linux Fedora 42):
+
+Install redis:
+```bash
+sudo dnf install redis
+```
+*Note: Fedora 42 actually uses Valkey instead of Redis, but it works the same.
+
+Install MongoDB:
+```bash
+sudo dnf install mongodb
+```
+*Note: you may need to set up the MongoDB repository to install. You can find
+the latest instructions on the official MongoDB website or documentation for Fedora.
+
+
+### Running (On Linux Fedora 42):
+Run Redis:
+```bash
+sudo systemctl start redis
+```
+Stop Redis:
+```bash
+sudo systemctl stop redis
+```
+
+Run MongoDB:
+```bash
+sudo systemctl start mongod
+```
+Stop MongoDB:
+```bash
+sudo systemctl stop mongod
+```
+
+### Running the API server:
+```bash
+npm run start-server
+```
+
+---
+
+## Environment Variables
+
+If you wish to use a `.env` file for environment variables, you should
 include the following line at the top of any file that uses `process.env`:
 ```javascript
 require('dotenv').config();
@@ -30,6 +81,26 @@ Then, make sure to install dotenv with npm:
 npm install dotenv
 ```
 Finally, remember to gitignore `.env` if you commit these changes.
+
+If you don't want to use a `.env` file, you can inline the variables in your
+terminal command to run the server.
+```bash
+PORT=5000 DB_HOST=localhost DB_PORT=27017 DB_DATABASE=files_manager npm run start-server
+```
+
+You can also leave out some or all environment variables, and it will default
+those to:
+```
+PORT=5000
+DB_HOST=localhost
+DB_PORT=27017
+DB_DATABASE=files_manager
+```
+
+`PORT` is the port to run the server on.  
+`DB_HOST` is the host MongoDB is running on.  
+`DB_PORT` is the port for the MongoDB.  
+`DB_DATABASE` is the name of the MongoDB database.  
 
 ---
 

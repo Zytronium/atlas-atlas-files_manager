@@ -8,8 +8,10 @@ import AppController from '../controllers/AppController';
 
 const router = express.Router();
 
+// GET /status
 router.get('/status', AppController.getStatus);
 
+// GET /stats
 router.get('/stats', AppController.getStats);
 
 export default router;

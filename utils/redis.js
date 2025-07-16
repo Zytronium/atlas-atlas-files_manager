@@ -1,4 +1,8 @@
 #!/usr/bin/node
+/*
+ * Util for redis database. You must have the Redis service installed and
+ * running on your device this to connect.
+ */
 import { createClient } from 'redis';
 
 class RedisClient {

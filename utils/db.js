@@ -1,4 +1,9 @@
 #!/usr/bin/node
+/*
+ * Util for MongoDB. You must have the mongod service installed and running
+ * on the host specified (in process.env) for this to connect. If the host
+ * is 'localhost' (which is default), it must be running on your machine.
+ */
 import { MongoClient } from 'mongodb';
 
 class DBClient {
