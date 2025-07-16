@@ -1,5 +1,5 @@
 #!/usr/bin/node
-import {MongoClient} from 'mongodb';
+import { MongoClient } from 'mongodb';
 
 class DBClient {
   constructor () {
@@ -10,14 +10,28 @@ class DBClient {
 
     this.client = new MongoClient(url, {useUnifiedTopology: true});
     this.dbName = database;
+    this.isConnected = false;
 
     this.client.connect()
       .then(() => {
         this.db = this.client.db(this.dbName);
+        this.isConnected = true;
       })
       .catch((err) => {
         console.error('MongoDB Client Error:', err);
       });
+  }
+
+  isAlive() {
+    return this.isConnected;
+  }
+
+  async nbUsers() {
+    return this.db.collection('users').countDocuments({}, { hint: "_id"});
+  }
+
+  async nbFiles() {
+    return this.db.collection('files').countDocuments({}, { hint: "_id"});
   }
 }
 

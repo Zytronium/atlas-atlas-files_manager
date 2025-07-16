@@ -41,7 +41,7 @@ Finally, remember to gitignore `.env` if you commit these changes.
 
 ### ✅ Tasks checklist:
 - [X] ​0. Redis Utils (12/12 pts)
-- [ ] ​1. MongoDB Utils (5/11 pts)
+- [X] ​1. MongoDB Utils (11/11 pts)
 - [ ] ​2. First API (0/11 pts)
 - [ ] ​3. Create a new user (0/11 pts)
 - [ ] ​4. Authenticate a user (0/11 pts)
@@ -53,7 +53,7 @@ Finally, remember to gitignore `.env` if you commit these changes.
 
 
 - [X] Readme
-- [ ] **Everything Done ✓** (17/111 pts) - 15%
+- [ ] **Everything Done ✓** (23/111 pts) - 21%
 
 ---
 
