@@ -15,6 +15,9 @@ router.get('/status', AppController.getStatus);
 // GET /stats
 router.get('/stats', AppController.getStats);
 
+// POST /files
+router.post('/files', AppController.postUpload);
+
 // POST /users
 router.post('/users', UsersController.postNew);
 
