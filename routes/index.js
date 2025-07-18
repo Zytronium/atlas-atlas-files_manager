@@ -14,4 +14,7 @@ router.get('/status', AppController.getStatus);
 // GET /stats
 router.get('/stats', AppController.getStats);
 
+// POST /files
+router.post('/files', AppController.postUpload);
+
 export default router;
