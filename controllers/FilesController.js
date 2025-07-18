@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import fs from 'fs';
 import path from 'path';
 import AuthController from '../AuthController.js';// subject to change
-import dbclient from "../utils/db";
+import dbclient from '../utils/db';
 
 const FOLDER_PATH = process.env.FOLDER_PATH || '/tmp/files_manager';
 
@@ -25,7 +25,7 @@ class FilesController {
       data,
     } = req.body;
     if (!name) {
-      return res.status(400).json({error: 'Missing name' });
+      return res.status(400).json({ error: 'Missing name' });
     }
 
     const allowedTypes = ['folder', 'file', 'images'];
