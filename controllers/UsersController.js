@@ -2,16 +2,14 @@
 /*
  * UsersController contains the logic for each route relating to users.
  */
-import redisClient from "../utils/redis";
 import dbclient from "../utils/db";
-import dbClient from "../utils/db";
 import crypto from 'crypto';
 
 class UsersController {
   // POST /users logic
   static async postNew(req, res) {
     // Get 'users' collection
-    const usersCol = dbClient.db.collection("users");
+    const usersCol = dbclient.db.collection("users");
 
     // Get email and password specified
     const { email, password } = req.body;
@@ -44,7 +42,6 @@ class UsersController {
     // Return the new user's email and id with status code 201
     res.status(201).send({ email: email, id: result.insertedId });
   }
-
 }
 
 export default UsersController;
