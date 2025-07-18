@@ -5,9 +5,14 @@
  */
 import express from 'express';
 import routes from './routes/index';
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 5000;
+
+// Allow JSON requests
+app.use(express.json());
 
 // Serve all API endpoints imported from routes/index.js
 app.use('/', routes);
