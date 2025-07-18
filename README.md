@@ -72,16 +72,13 @@ npm run start-server
 
 ## Environment Variables
 
-If you wish to use a `.env` file for environment variables, you should create
-the file at the root of this repository and install `dotenv` with npm:
-```bash
-touch .env
-npm install dotenv
-```
-Finally, make sure `.env` is git-ignored before you commit these changes.
+If you wish to use a `.env` file for environment variables, you can create
+the file at the root of this repository. The server will automatically use
+the environment variables from this file if present. Make sure `.env` is
+git-ignored before you commit these changes if there is sensitive info in it.
 
-If need to set environment variables, temporarily, you can inline the variables
-in your command to run the server like this:
+If you need to set environment variables temporarily, you can inline the
+variables in your command to run the server like this:
 ```bash
 PORT=5000 DB_HOST=localhost DB_PORT=27017 DB_DATABASE=files_manager npm run start-server
 ```
