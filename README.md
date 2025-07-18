@@ -63,6 +63,7 @@ sudo systemctl stop mongod
 ```
 
 ### Running the API server:
+In the root directory `atlas-atlas-files_manager/`:
 ```bash
 npm run start-server
 ```
@@ -71,26 +72,25 @@ npm run start-server
 
 ## Environment Variables
 
-If you wish to use a `.env` file for environment variables, you should
-include the following line at the top of any file that uses `process.env`:
-```javascript
-require('dotenv').config();
-```
-Then, make sure to install dotenv with npm:
+If you wish to use a `.env` file for environment variables, you should create
+the file at the root of this repository and install `dotenv` with npm:
 ```bash
+touch .env
 npm install dotenv
 ```
-Finally, remember to gitignore `.env` if you commit these changes.
+Finally, make sure `.env` is git-ignored before you commit these changes.
 
-If you don't want to use a `.env` file, you can inline the variables in your
-terminal command to run the server.
+If need to set environment variables, temporarily, you can inline the variables
+in your command to run the server like this:
 ```bash
 PORT=5000 DB_HOST=localhost DB_PORT=27017 DB_DATABASE=files_manager npm run start-server
 ```
+Any environment variables set with this method will override the same ones from
+the `.env` file (but doesn't overwrite them).
 
 You can also leave out some or all environment variables, and it will default
 those to:
-```
+```dotenv
 PORT=5000
 DB_HOST=localhost
 DB_PORT=27017
@@ -98,8 +98,8 @@ DB_DATABASE=files_manager
 ```
 
 `PORT` is the port to run the server on.  
-`DB_HOST` is the host MongoDB is running on.  
-`DB_PORT` is the port for the MongoDB.  
+`DB_HOST` is the host address MongoDB is running on.  
+`DB_PORT` is the port MongoDB is running on.  
 `DB_DATABASE` is the name of the MongoDB database.  
 
 ---
@@ -135,9 +135,9 @@ Tasks marked with a `D` are assigned to Daniel and tasks marked with a `T` are a
 >### Progress Goals:
 >Monday, July 14: 5% (6 pts) ✓  
 Tuesday, July 15: 15% (17 pts) ✓  
-<strong>Wednesday, July 16: 30% (33 pts)</strong> ✓  
-<em style="color: gray">Thursday, July 17: 50% (55 pts)</em>  
-<em style="color: gray">Friday, July 18: 65% (72 pts)</em>  
+Wednesday, July 16: 30% (33 pts) ✓  
+Thursday, July 17: 40% (44 pts)  
+<strong>Friday, July 18: 60% (67 pts)</strong>  
 <em style="color: gray">Saturday/Sunday, July 19-20: 75% (83 pts)</em>  
 <em style="color: gray">Monday, July 21: 90% (100 pts)</em>  
 <em style="color: gray">Tuesday, July 22: 100% (111 pts)</em>  
