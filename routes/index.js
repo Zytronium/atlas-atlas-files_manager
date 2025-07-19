@@ -5,9 +5,12 @@
  */
 import express from 'express';
 import AppController from '../controllers/AppController';
+import AuthController from "../controllers/AuthController";
 import UsersController from "../controllers/UsersController";
 
 const router = express.Router();
+
+// -------------- AppController Endpoints -------------- \\
 
 // GET /status
 router.get('/status', AppController.getStatus);
@@ -15,7 +18,20 @@ router.get('/status', AppController.getStatus);
 // GET /stats
 router.get('/stats', AppController.getStats);
 
+// ------------- UsersController Endpoints ------------- \\
+
+// GET /users/me
+// router.get('/users/me', UsersController.getMe); // todo
+
 // POST /users
 router.post('/users', UsersController.postNew);
+
+// ------------- AuthController Endpoints ------------- \\
+
+// GET /connect
+router.get('/connect', AuthController.getConnect);
+
+// GET /disconnect
+// router.get('/disconnect', AuthController.getDisconnect); // todo
 
 export default router;

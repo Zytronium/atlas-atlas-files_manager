@@ -116,7 +116,7 @@ Tasks marked with a `D` are assigned to Daniel and tasks marked with a `T` are a
 - [X] ​1. MongoDB Utils (11/11 pts) `D`
 - [X] ​2. First API (11/11 pts) `D`
 - [X] ​3. Create a new user (11/11 pts) `D`
-- [ ] ​4. Authenticate a user (0/11 pts) `D`
+- [ ] ​4. Authenticate a user (3/11 pts) `D`
 - [ ] ​5. First file (0/11 pts) `T`
 - [ ] ​6. Get and list file (0/11 pts) `T`
 - [ ] ​7. File publish/unpublish (0/11 pts) `T`
@@ -125,7 +125,7 @@ Tasks marked with a `D` are assigned to Daniel and tasks marked with a `T` are a
 
 
 - [X] Readme
-- [ ] **Everything Done ✓** (45/111 pts) - 41%
+- [ ] **Everything Done ✓** (48/111 pts) - 43%
 
 ---
 
