@@ -1,4 +1,4 @@
-# Files Manager Express
+# Files Manager Express  
 
 Files Manager Express is a Node.js backend project that demonstrates key
 backend development concepts, including token-based user authentication,
@@ -115,8 +115,8 @@ Tasks marked with a `D` are assigned to Daniel and tasks marked with a `T` are a
 - [X] ​0. Redis Utils (12/12 pts) `D`
 - [X] ​1. MongoDB Utils (11/11 pts) `D`
 - [X] ​2. First API (11/11 pts) `D`
-- [ ] ​3. Create a new user (0/11 pts) `D`
-- [ ] ​4. Authenticate a user (0/11 pts) `D`
+- [X] ​3. Create a new user (11/11 pts) `D`
+- [ ] ​4. Authenticate a user (3/11 pts) `D`
 - [ ] ​5. First file (0/11 pts) `T`
 - [ ] ​6. Get and list file (0/11 pts) `T`
 - [ ] ​7. File publish/unpublish (0/11 pts) `T`
@@ -125,7 +125,7 @@ Tasks marked with a `D` are assigned to Daniel and tasks marked with a `T` are a
 
 
 - [X] Readme
-- [ ] **Everything Done ✓** (34/111 pts) - 31%
+- [ ] **Everything Done ✓** (48/111 pts) - 43%
 
 ---
 
@@ -133,7 +133,7 @@ Tasks marked with a `D` are assigned to Daniel and tasks marked with a `T` are a
 >Monday, July 14: 5% (6 pts) ✓  
 Tuesday, July 15: 15% (17 pts) ✓  
 Wednesday, July 16: 30% (33 pts) ✓  
-Thursday, July 17: 40% (44 pts)  
+Thursday, July 17: 40% (44 pts) ✓  
 <strong>Friday, July 18: 60% (67 pts)</strong>  
 <em style="color: gray">Saturday/Sunday, July 19-20: 75% (83 pts)</em>  
 <em style="color: gray">Monday, July 21: 90% (100 pts)</em>  
