@@ -8,6 +8,8 @@ import crypto from 'crypto';
 class UsersController {
   // POST /users logic
   static async postNew(req, res) {
+    // Creates a new user with the given email and password
+
     // Get 'users' collection
     const usersCol = dbclient.db.collection("users");
 
