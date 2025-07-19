@@ -1,4 +1,4 @@
-# Files Manager Express  
+# Files Manager Express
 
 Files Manager Express is a Node.js backend project that demonstrates key
 backend development concepts, including token-based user authentication,
@@ -117,7 +117,7 @@ Tasks marked with a `D` are assigned to Daniel and tasks marked with a `T` are a
 - [X] ​2. First API (11/11 pts) `D`
 - [X] ​3. Create a new user (11/11 pts) `D`
 - [ ] ​4. Authenticate a user (3/11 pts) `D`
-- [ ] ​5. First file (0/11 pts) `T`
+- [ ] ​5. First file (10/11 pts) `T`
 - [ ] ​6. Get and list file (0/11 pts) `T`
 - [ ] ​7. File publish/unpublish (0/11 pts) `T`
 - [ ] ​8. File data (0/11 pts) `T`
@@ -125,7 +125,7 @@ Tasks marked with a `D` are assigned to Daniel and tasks marked with a `T` are a
 
 
 - [X] Readme
-- [ ] **Everything Done ✓** (48/111 pts) - 43%
+- [ ] **Everything Done ✓** (58/111 pts) - 52%
 
 ---
 
