@@ -5,7 +5,8 @@
  */
 import express from 'express';
 import AppController from '../controllers/AppController';
-import UsersController from "../controllers/UsersController";
+import UsersController from '../controllers/UsersController';
+import FilesController from '../controllers/FilesController';
 
 const router = express.Router();
 
@@ -20,5 +21,11 @@ router.post('/files', AppController.postUpload);
 
 // POST /users
 router.post('/users', UsersController.postNew);
+
+// GET /files/:id
+router.get('/files/:id', FilesController.getShow);
+
+// GET /files
+router.get('/files', FilesController.getIndex);
 
 export default router;
