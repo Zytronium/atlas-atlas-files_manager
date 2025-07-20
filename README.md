@@ -92,12 +92,14 @@ PORT=5000
 DB_HOST=localhost
 DB_PORT=27017
 DB_DATABASE=files_manager
+FOLDER_PATH=/tmp/files_manager
 ```
 
 `PORT` is the port to run the server on.  
 `DB_HOST` is the host address MongoDB is running on.  
 `DB_PORT` is the port MongoDB is running on.  
 `DB_DATABASE` is the name of the MongoDB database.  
+`FOLDER_PATH` is the folder path for storing files locally.  
 
 ---
 
