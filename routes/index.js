@@ -19,6 +19,22 @@ router.get('/status', AppController.getStatus);
 // GET /stats
 router.get('/stats', AppController.getStats);
 
+// ------------- AuthController Endpoints ------------- \\
+
+// GET /connect
+router.get('/connect', AuthController.getConnect);
+
+// GET /disconnect
+router.get('/disconnect', AuthController.getDisconnect);
+
+// ------------- UsersController Endpoints ------------- \\
+
+// GET /users/me
+router.get('/users/me', UsersController.getMe);
+
+// POST /users
+router.post('/users', UsersController.postNew);
+
 // ------------- FilesController Endpoints ------------- \\
 
 // GET /files/:id
@@ -29,21 +45,5 @@ router.get('/files', FilesController.getIndex);
 
 // POST /files
 router.post('/files', FilesController.postUpload);
-
-// ------------- UsersController Endpoints ------------- \\
-
-// GET /users/me
-// router.get('/users/me', UsersController.getMe); // todo
-
-// POST /users
-router.post('/users', UsersController.postNew);
-
-// ------------- AuthController Endpoints ------------- \\
-
-// GET /connect
-router.get('/connect', AuthController.getConnect);
-
-// GET /disconnect
-// router.get('/disconnect', AuthController.getDisconnect); // todo
 
 export default router;

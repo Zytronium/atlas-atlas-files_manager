@@ -4,12 +4,11 @@
  */
 import dbclient from "../utils/db";
 import crypto from 'crypto';
+import AuthController from "./AuthController";
 
 class UsersController {
-  // POST /users logic
+  // POST /users logic - Creates a new user with the given email and password
   static async postNew(req, res) {
-    // Creates a new user with the given email and password
-
     // Get 'users' collection
     const usersCol = dbclient.db.collection("users");
 
@@ -43,6 +42,25 @@ class UsersController {
 
     // Return the new user's email and id with status code 201
     res.status(201).send({ email: email, id: result.insertedId });
+  }
+
+  // GET /users/me - Retrieve the user from the token used
+  static async getMe(req, res) {
+    // Get the token from request headers
+    const token = req.headers['x-token'];
+
+    // Get the user from the token
+    const user = await AuthController.getUserFromToken(token);
+    if (!user) { // If not found, return error 401 Unauthorized
+      return res.status(401).send({ error: "Unauthorized" });
+    }
+
+    // Return the user object (email and id only)
+    res.status(200).send(
+      {
+        id: user._id,
+        email: user.email,
+      });
   }
 }
 
