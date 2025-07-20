@@ -6,8 +6,10 @@ import { v4 as uuidv4 } from 'uuid';
 import { ObjectId } from 'mongodb';
 import fs from 'fs';
 import path from 'path';
-import AuthController from '../AuthController.js';// subject to change
+import AuthController from './AuthController.js';
 import dbclient from '../utils/db';
+import dotenv from "dotenv";
+dotenv.config();
 
 const FOLDER_PATH = process.env.FOLDER_PATH || '/tmp/files_manager';
 
