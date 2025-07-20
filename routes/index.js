@@ -44,6 +44,6 @@ router.post('/users', UsersController.postNew);
 router.get('/connect', AuthController.getConnect);
 
 // GET /disconnect
-// router.get('/disconnect', AuthController.getDisconnect); // todo
+router.get('/disconnect', AuthController.getDisconnect);
 
 export default router;

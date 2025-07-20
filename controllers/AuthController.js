@@ -47,10 +47,23 @@ class AuthController {
     res.status(200).send({ token: token});
   }
 
-  // GET /disconnect logic
+  // GET /disconnect logic - sign out a user based on a token
   static async getDisconnect(req, res) {
-    // todo
+    // Get the token
+    const token = req.headers['x-token'];
 
+    // Get the user from the token
+    const user = await AuthController.getUserFromToken(token);
+    if (!user) {
+      // If not found, return error 401 Unauthorized
+      return res.status(401).send({ error: "Unauthorized" });
+    }
+
+    // Delete the token
+    await redisClient.del(`auth_${token}`);
+
+    // Return status code 204
+    res.status(204);
   }
 
   // Not an endpoint. Helper function that gets a user from a token.
@@ -66,7 +79,7 @@ class AuthController {
     // Get the user ID from redis
     const userId = await redisClient.get(`auth_${token}`);
     if (!userId) {
-      // Return null if not found
+      // Return null if not found (token was invalid)
       return null;
     }
 
