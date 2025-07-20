@@ -4,16 +4,37 @@
  */
 import redisClient from "../utils/redis";
 import dbclient from "../utils/db";
+import { ObjectId } from 'mongodb';
 import {v4 as uuidv4} from 'uuid';
 import crypto from 'crypto';
 
 class AuthController {
-  // GET /connect logic
+  // GET /connect logic - Sign in a user by generating a new authentication token
   static async getConnect(req, res) {
-    // Sign in to a user by generating a new authentication token
+    // Get 'users' collection
+    const usersCol = dbclient.db.collection("users");
 
-    // Get the user from the Authorization header
-    const user = await AuthController.getUserFromToken(req);
+    // Get the authorization header
+    const authHeader = req.headers.authorization;
+
+    // Check if auth header exists and starts with "Basic "
+    if (!authHeader || !authHeader.startsWith("Basic ")) { // If not, return error 401 Unauthorized
+      return res.status(401).send({ error: "Unauthorized" });
+    }
+
+    // Remove "Basic " from auth header string and decode from base64
+    const base64Credentials = authHeader.replace("Basic ", "");
+    const credentials = Buffer.from(base64Credentials, "base64").toString();
+    // ^ This will result in something like "someone@example.com:password123" (email:password)
+
+    // Get email & password from credentials
+    const [email, password] = credentials.split(":");
+
+    // Hash the password
+    const hashedPW = crypto.createHash('sha1').update(password).digest('hex');
+
+    // Search for a user with this email and password in the DB and return it.
+    const user = await usersCol.findOne({email: email, password: hashedPW});
     if (!user) { // If the user is not found, return error 401 Unauthorized
       return res.status(401).send({ error: "Unauthorized" });
     }
@@ -32,39 +53,29 @@ class AuthController {
 
   }
 
-  // Not an endpoint. Helper function that gets a user from the Authorization header in req.
-  static async getUserFromToken(req) {
-    // Gets a user from the token stored in `req`. Returns the user if found,
-    // else, returns null, in which case, the endpoint calling this function
-    // should return error 401 Unauthorized.
-
+  // Not an endpoint. Helper function that gets a user from a token.
+  static async getUserFromToken(token) {
     // Get 'users' collection
     const usersCol = dbclient.db.collection("users");
 
-    // Get the authorization header
-    const authHeader = req.headers.authorization;
-
-    // Check if auth header exists and starts with "Basic "
-    if (!authHeader || !authHeader.startsWith("Basic ")) {
-      // If not, return null. The calling function should return error 401 Unauthorized
+    if (!token) {
+      // Return null if no token was found (i.e., token is null or undefined)
       return null;
     }
 
-    // Remove "Basic " from auth header string and decode from base64
-    const base64Credentials = authHeader.replace("Basic ", "");
-    const credentials = Buffer.from(base64Credentials, "base64").toString();
-    // ^ This will result in something like "someone@example.com:password123" (email:password)
+    // Get the user ID from redis
+    const userId = await redisClient.get(`auth_${token}`);
+    if (!userId) {
+      // Return null if not found
+      return null;
+    }
 
-    // Get email & password from credentials
-    const [email, password] = credentials.split(":");
-
-    // Hash the password
-    const hashedPW = crypto.createHash('sha1').update(password).digest('hex');
-
-    // Search for a user with this email and password in the DB and return it.
-    return await usersCol.findOne({email: email, password: hashedPW});
-    // If this returns null, the user is not found and the calling function should return error 401 Unauthorized
+    // Find the user in the Mongo DB from the user ID
+    const user = await usersCol.findOne({ _id: new ObjectId(userId) });
+    // Return the user if found, else null
+    return user || null;
   }
+
 }
 
 export default AuthController;

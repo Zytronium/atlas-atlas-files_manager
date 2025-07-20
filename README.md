@@ -121,7 +121,7 @@ them.
 - [X] ​2. First API (11/11 pts) `D`
 - [X] ​3. Create a new user (11/11 pts) `D`
 - [ ] ​4. Authenticate a user (3/11 pts) `D`
-- [ ] ​5. First file (10/11 pts) `T`
+- [X] ​5. First file (11/11 pts) `T`
 - [X] ​6. Get and list file (11/11 pts) `T`
 - [ ] ​7. File publish/unpublish (0/11 pts) `T`
 - [ ] ​8. File data (0/11 pts) `T`
@@ -129,7 +129,7 @@ them.
 
 
 - [X] Readme
-- [ ] **Everything Done ✓** (69<span style="font-size: xx-small">(nice)</span>/111 pts) - 62%  
+- [ ] **Everything Done ✓** (70111 pts) - 63%  
 
 ---
 

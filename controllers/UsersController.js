@@ -6,10 +6,8 @@ import dbclient from "../utils/db";
 import crypto from 'crypto';
 
 class UsersController {
-  // POST /users logic
+  // POST /users logic - Creates a new user with the given email and password
   static async postNew(req, res) {
-    // Creates a new user with the given email and password
-
     // Get 'users' collection
     const usersCol = dbclient.db.collection("users");
 
