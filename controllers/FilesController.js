@@ -3,6 +3,7 @@
  * Manages the logic for the /files route
  */
 import { v4 as uuidv4 } from 'uuid';
+import { ObjectId } from 'mongodb';
 import fs from 'fs';
 import path from 'path';
 import AuthController from '../AuthController.js';// subject to change
@@ -28,7 +29,7 @@ class FilesController {
       return res.status(400).json({ error: 'Missing name' });
     }
 
-    const allowedTypes = ['folder', 'file', 'images'];
+    const allowedTypes = ['folder', 'file', 'image'];
     if (!type || !allowedTypes.includes(type)) {
       return res.status(400).json({ error: 'Missing type' });
     }
@@ -39,7 +40,7 @@ class FilesController {
 
     const parentIdVal = parentId === 0 ? 0 : parentId;
     if (parentId !== 0) {
-      const parentFile = await dbclient.db.collection('files').findOne({ _id: new dbclient.ObjectId(parentId) });
+      const parentFile = await dbclient.db.collection('files').findOne({ _id: new ObjectId(parentId) });
       if (!parentFile) {
         return res.status(400).json({ error: 'Parent not found' });
       }
@@ -55,10 +56,10 @@ class FilesController {
       parentId: parentIdVal,
     };
     if (type === 'file' || type === 'image') {
-      const fileName = uuidv4();
-      if (!fs.existsSync(FOLDER_PATH, fileName)) {
+      if (!fs.existsSync(FOLDER_PATH)) {
         fs.mkdirSync(FOLDER_PATH, { recursive: true });
       }
+      const fileName = uuidv4();
       const filePath = path.join(FOLDER_PATH, fileName);
       const buffer = Buffer.from(data, 'base64');
       await fs.promises.writeFile(filePath, buffer);
@@ -74,6 +75,64 @@ class FilesController {
       parentId: fileDoc.parentId,
     };
     return res.status(201).json(response);
+  }
+
+  static async getShow(req, res) {
+    const user = await AuthController.getUserFromToken(req);
+    if (!user) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+    const fileId = req.params.id;
+    if (!ObjectId.isValid(fileId)) {
+      return res.status(401).json({ error: 'Not found' });
+    }
+    const file = await dbclient.db.collection('files').findOne({
+      _id: new ObjectId(fileId),
+      userId: user._id,
+    });
+    if (!file) {
+      return res.status(404).json({ error: 'Not found' });
+    }
+    return res.status(200).json({
+      id: file._id,
+      userId: file.userId,
+      name: file.name,
+      type: file.type,
+      isPublic: file.isPublic,
+      parentId: file.parentId,
+    });
+  }
+
+  static async getIndex(req, res) {
+    const user = await AuthController.getUserFromToken(req);
+    if (!user) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+    const parentId = req.query.parentId || 0;
+    const page = parseInt(req.query.page, 10) || 0;
+    const match = {
+      userId: user._id,
+      parentId: parentId === 0 ? 0 : new ObjectId(parentId),
+    };
+    const files = await dbclient.db.collection('files')
+      .aggregate([
+        { $match: match },
+        { $skip: page * 20 },
+        { $limit: 20 },
+        {
+          $project: {
+            _id: 0,
+            id: '$_id',
+            userId: 1,
+            name: 1,
+            type: 1,
+            isPublic: 1,
+            parentId: 1,
+          },
+        },
+      ])
+      .toArray();
+    return res.status(200).json(files);
   }
 }
 
