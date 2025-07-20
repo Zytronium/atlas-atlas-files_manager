@@ -63,7 +63,7 @@ class AuthController {
     await redisClient.del(`auth_${token}`);
 
     // Return status code 204
-    res.status(204);
+    res.status(204).send();
   }
 
   // Not an endpoint. Helper function that gets a user from a token.
