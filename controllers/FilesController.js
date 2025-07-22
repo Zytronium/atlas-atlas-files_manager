@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { ObjectId } from 'mongodb';
 import fs from 'fs';
 import path from 'path';
-import AuthController from '../AuthController.js';// subject to change
+import AuthController from './AuthController';
 import dbclient from '../utils/db';
 
 const FOLDER_PATH = process.env.FOLDER_PATH || '/tmp/files_manager';
@@ -136,11 +136,34 @@ class FilesController {
   }
 
   static async putPublish(req, res) {
+    // Token check
     const user = await AuthController.getUserFromToken(req);
     if (!user) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
-    
+    // gets id parameter
+    const fileId = req.params.id;
+    if (!ObjectId.isValid(fileId)) {
+      return res.status(400).json({ error: 'Invalid file ID' });
+    }
+    // Searches mongoesDB for id
+    const file = await dbclient.db.collection('files').updateOne(
+      { _id: new ObjectId(fileId) },
+      { $set: { isPublic: false } },
+    );
+    if (!file) {
+      res.status(404).json({ error: 'Not found' });
+    }
+    // Sets up the new files info
+    const updatedFile = {
+      id: file._id,
+      userId: file.userId,
+      name: file.name,
+      type: file.type,
+      isPublic: false,
+      parentId: file.parentId,
+    };
+    return res.status(200).json(updatedFile);
   }
 }
 
