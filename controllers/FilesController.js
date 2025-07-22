@@ -147,14 +147,50 @@ class FilesController {
       return res.status(400).json({ error: 'Invalid file ID' });
     }
     // Searches mongoesDB for id
-    const file = await dbclient.db.collection('files').updateOne(
-      { _id: new ObjectId(fileId) },
-      { $set: { isPublic: false } },
-    );
+    const file = await dbclient.db.collection('files').findOne({
+      _id: new ObjectId(fileId),
+      userId: user._id,
+    });
     if (!file) {
       res.status(404).json({ error: 'Not found' });
     }
+    // Updates isPublic
+    await dbclient.db.collection('files').updateOne(
+      { _id: new ObjectId(fileId) },
+      { $set: { isPublic: true } },
+    );
     // Sets up the new files info
+    const updatedFile = {
+      id: file._id,
+      userId: file.userId,
+      name: file.name,
+      type: file.type,
+      isPublic: true,
+      parentId: file.parentId,
+    };
+    return res.status(200).json(updatedFile);
+  }
+
+  static async putUnpublish(req, res) {
+    const user = await AuthController.getUserFromToken(req);
+    if (!user) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+    const fileId = req.params.id;
+    if (!ObjectId.isValid(fileId)) {
+      return res.status(400).json({ error: 'Invalid file ID' });
+    }
+    const file = await dbclient.db.collection('files').findOne({
+      _id: new ObjectId(fileId),
+      userId: user._id,
+    });
+    if (!file) {
+      return res.status(404).json({ error: 'Not found' });
+    }
+    await dbclient.db.collection('files').updateOne(
+      { _id: new ObjectId(fileId) },
+      { $set: { isPublic: false } },
+    );
     const updatedFile = {
       id: file._id,
       userId: file.userId,
