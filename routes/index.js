@@ -10,6 +10,8 @@ import FilesController from '../controllers/FilesController';
 
 const router = express.Router();
 
+// -------------- AppController Endpoints -------------- \\
+
 // GET /status
 router.get('/status', AppController.getStatus);
 
@@ -17,7 +19,12 @@ router.get('/status', AppController.getStatus);
 router.get('/stats', AppController.getStats);
 
 // POST /files
-router.post('/files', AppController.postUpload);
+router.post('/files', FilesController.postUpload);
+
+// ------------- UsersController Endpoints ------------- \\
+
+// GET /users/me
+// router.get('/users/me', UsersController.getMe); // todo
 
 // POST /users
 router.post('/users', UsersController.postNew);
@@ -27,6 +34,13 @@ router.get('/files/:id', FilesController.getShow);
 
 // GET /files
 router.get('/files', FilesController.getIndex);
+// ------------- AuthController Endpoints ------------- \\
+
+// GET /connect
+router.get('/connect', AuthController.getConnect);
+
+// GET /disconnect
+// router.get('/disconnect', AuthController.getDisconnect); // todo
 
 // PUT /files/:id/publish
 router.get('/files/:id/publish', FilesController.putPublish);
