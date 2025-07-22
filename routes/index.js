@@ -28,4 +28,10 @@ router.get('/files/:id', FilesController.getShow);
 // GET /files
 router.get('/files', FilesController.getIndex);
 
+// PUT /files/:id/publish
+router.get('/files/:id/publish', FilesController.putPublish);
+
+// PUT /files/:id/publish
+router.get('/files/:id/publish', FilesController.putUnpublish);
+
 export default router;

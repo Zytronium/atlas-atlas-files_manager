@@ -134,6 +134,14 @@ class FilesController {
       .toArray();
     return res.status(200).json(files);
   }
+
+  static async putPublish(req, res) {
+    const user = await AuthController.getUserFromToken(req);
+    if (!user) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+    
+  }
 }
 
 module.exports = FilesController;
