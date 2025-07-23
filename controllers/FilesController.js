@@ -38,7 +38,6 @@ class FilesController {
       return res.status(400).json({ error: 'Missing data' });
     }
 
-    const parentIdVal = parentId === 0 ? 0 : parentId;
     if (parentId !== 0) {
       const parentFile = await dbclient.db.collection('files').findOne({ _id: new ObjectId(parentId) });
       if (!parentFile) {
@@ -53,7 +52,7 @@ class FilesController {
       name,
       type,
       isPublic,
-      parentId: parentIdVal,
+      parentId,
     };
     if (type === 'file' || type === 'image') {
       if (!fs.existsSync(FOLDER_PATH)) {
@@ -74,6 +73,9 @@ class FilesController {
       isPublic: fileDoc.isPublic,
       parentId: fileDoc.parentId,
     };
+    if (fileDoc.localPath) {
+      response.localPath = fileDoc.localPath;
+    }
     return res.status(201).json(response);
   }
 
