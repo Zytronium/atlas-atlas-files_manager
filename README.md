@@ -92,12 +92,14 @@ PORT=5000
 DB_HOST=localhost
 DB_PORT=27017
 DB_DATABASE=files_manager
+FOLDER_PATH=/tmp/files_manager
 ```
 
 `PORT` is the port to run the server on.  
 `DB_HOST` is the host address MongoDB is running on.  
 `DB_PORT` is the port MongoDB is running on.  
 `DB_DATABASE` is the name of the MongoDB database.  
+`FOLDER_PATH` is the folder path for storing files locally.  
 
 ---
 
@@ -110,22 +112,24 @@ DB_DATABASE=files_manager
 [//]: # (Note: Points here are based on progress on the task and how much of that task is working; not how many points it gets when graded, since there is no checker for this project.)
 
 ### ✅ Tasks checklist:
-Tasks marked with a `D` are assigned to Daniel and tasks marked with a `T` are assigned to Tsim.
+Tasks marked with a `D` are assigned to Daniel and tasks marked with a `T` are
+assigned to Tsim. Tasks marked with ` ` are assigned to whoever feels like doing
+them.
 
 - [X] ​0. Redis Utils (12/12 pts) `D`
 - [X] ​1. MongoDB Utils (11/11 pts) `D`
 - [X] ​2. First API (11/11 pts) `D`
 - [X] ​3. Create a new user (11/11 pts) `D`
-- [ ] ​4. Authenticate a user (3/11 pts) `D`
-- [ ] ​5. First file (10/11 pts) `T`
-- [ ] ​6. Get and list file (0/11 pts) `T`
+- [X] ​4. Authenticate a user (11/11 pts) `D`
+- [X] ​5. First file (11/11 pts) `T`
+- [X] ​6. Get and list file (11/11 pts) `T`
 - [ ] ​7. File publish/unpublish (0/11 pts) `T`
 - [ ] ​8. File data (0/11 pts) `T`
 - [ ] ​9. Image Thumbnails (0/11 pts) ` `
 
 
 - [X] Readme
-- [ ] **Everything Done ✓** (58/111 pts) - 52%
+- [ ] **Everything Done ✓** (78/111 pts) - 70%  
 
 ---
 
@@ -134,8 +138,8 @@ Tasks marked with a `D` are assigned to Daniel and tasks marked with a `T` are a
 Tuesday, July 15: 15% (17 pts) ✓  
 Wednesday, July 16: 30% (33 pts) ✓  
 Thursday, July 17: 40% (44 pts) ✓  
-<strong>Friday, July 18: 60% (67 pts)</strong>  
-<em style="color: gray">Saturday/Sunday, July 19-20: 75% (83 pts)</em>  
+Friday, July 18: 60% (67 pts) ✓  
+<strong>Saturday/Sunday, July 19-20: 75% (83 pts)</strong>  
 <em style="color: gray">Monday, July 21: 90% (100 pts)</em>  
 <em style="color: gray">Tuesday, July 22: 100% (111 pts)</em>  
 

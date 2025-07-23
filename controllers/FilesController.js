@@ -1,6 +1,6 @@
 #!/usr/bin/node
 /*
- * Manages the logic for the /files route
+ * Manages the logic for the /files routes
  */
 import { v4 as uuidv4 } from 'uuid';
 import { ObjectId } from 'mongodb';
@@ -8,12 +8,14 @@ import fs from 'fs';
 import path from 'path';
 import AuthController from './AuthController';
 import dbclient from '../utils/db';
+import dotenv from "dotenv";
+dotenv.config();
 
 const FOLDER_PATH = process.env.FOLDER_PATH || '/tmp/files_manager';
 
 class FilesController {
   static async postUpload(req, res) {
-    const user = await AuthController.getUserFromToken(req);
+    const user = await AuthController.getUserFromToken(req.headers['x-token']);
     if (!user) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -80,7 +82,7 @@ class FilesController {
   }
 
   static async getShow(req, res) {
-    const user = await AuthController.getUserFromToken(req);
+    const user = await AuthController.getUserFromToken(req.headers['x-token']);
     if (!user) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -106,7 +108,7 @@ class FilesController {
   }
 
   static async getIndex(req, res) {
-    const user = await AuthController.getUserFromToken(req);
+    const user = await AuthController.getUserFromToken(req.headers['x-token']);
     if (!user) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
