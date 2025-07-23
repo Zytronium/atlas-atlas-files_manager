@@ -201,6 +201,37 @@ class FilesController {
     };
     return res.status(200).json(updatedFile);
   }
+
+  static async getFile(req, res) {
+    const user = await AuthController.getUserFromToken(req);
+    if (!user) {
+      return res.status(404).json({ error: 'Unauthorized' });
+    }
+    const fileId = req.params.id;
+    if (!ObjectId.isValid(fileId)) {
+      return res.status(404).json({ error: 'Not found' });
+    }
+    const file = await dbclient.db.collection('files').findOne({
+      _id: new ObjectId(fileId),
+    });
+    if (!file) {
+      return res.status(404).json({ error: 'Not found' });
+    }
+    if (!file.isPublic && (!user || user._id.toString() !== file.userId.toString())) {
+      return res.status(404).json({ error: 'Not found' });
+    }
+    if (file.type === 'folder') {
+      return res.status(400).json({ error: "A folder doesn't have content" });
+    }
+    try {
+      const fileData = await fs.promises.readFile(file.localPath);
+      const mimeType = file.type === 'image' ? 'image/*' : 'application/octet-stream';
+      res.setHeader('Content-Type', mimeType);
+      return res.status(200).send(fileData);
+    } catch (err) {
+      return res.status(404).json({ error: 'File not found on disk' });
+    }
+  }
 }
 
 module.exports = FilesController;

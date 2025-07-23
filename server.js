@@ -4,8 +4,9 @@
  * startup logic and imports all routes from routes/index.js.
  */
 import express from 'express';
-import routes from './routes/index';
-import dotenv from "dotenv";
+import dotenv from 'dotenv';
+import routes from './routes/index.js';
+
 dotenv.config();
 
 const app = express();
