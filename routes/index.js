@@ -30,11 +30,6 @@ router.post('/files', FilesController.postUpload);
 // POST /users
 router.post('/users', UsersController.postNew);
 
-// GET /files/:id
-router.get('/files/:id', FilesController.getShow);
-
-// GET /files
-router.get('/files', FilesController.getIndex);
 // ------------- AuthController Endpoints ------------- \\
 
 // GET /connect
@@ -43,10 +38,21 @@ router.get('/connect', AuthController.getConnect);
 // GET /disconnect
 // router.get('/disconnect', AuthController.getDisconnect); // todo
 
-// PUT /files/:id/publish
-router.get('/files/:id/publish', FilesController.putPublish);
+// ------------- FilesController Endpoints ------------- \\
 
 // PUT /files/:id/publish
-router.get('/files/:id/publish', FilesController.putUnpublish);
+router.put('/files/:id/publish', FilesController.putPublish);
+
+// PUT /files/:id/publish
+router.put('/files/:id/publish', FilesController.putUnpublish);
+
+// GET /files/:id/data
+router.get('/files/:id/data', FilesController.getFile);
+
+// GET /files/:id
+router.get('/files/:id', FilesController.getShow);
+
+// GET /files
+router.get('/files', FilesController.getIndex);
 
 export default router;
