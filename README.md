@@ -123,13 +123,13 @@ them.
 - [X] ​4. Authenticate a user (11/11 pts) `D`
 - [X] ​5. First file (11/11 pts) `T`
 - [X] ​6. Get and list file (11/11 pts) `T`
-- [ ] ​7. File publish/unpublish (0/11 pts) `T`
-- [ ] ​8. File data (0/11 pts) `T`
+- [X] ​7. File publish/unpublish (11/11 pts) `T`
+- [X] ​8. File data (11/11 pts) `T`
 - [ ] ​9. Image Thumbnails (0/11 pts) ` `
 
 
 - [X] Readme
-- [ ] **Everything Done ✓** (78/111 pts) - 70%  
+- [ ] **Everything Done ✓** (100/111 pts) - 90%  
 
 ---
 
@@ -139,8 +139,8 @@ Tuesday, July 15: 15% (17 pts) ✓
 Wednesday, July 16: 30% (33 pts) ✓  
 Thursday, July 17: 40% (44 pts) ✓  
 Friday, July 18: 60% (67 pts) ✓  
-<strong>Saturday/Sunday, July 19-20: 75% (83 pts)</strong>  
-<em style="color: gray">Monday, July 21: 90% (100 pts)</em>  
-<em style="color: gray">Tuesday, July 22: 100% (111 pts)</em>  
+Saturday/Sunday, July 19-20: 75% (83 pts) ✓  
+Monday, July 21: 90% (100 pts) ✓  
+Tuesday, July 22: 100% (111 pts)  
 
 ---
