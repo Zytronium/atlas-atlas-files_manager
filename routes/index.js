@@ -8,6 +8,7 @@ import AppController from '../controllers/AppController';
 import AuthController from '../controllers/AuthController';
 import UsersController from '../controllers/UsersController';
 import FilesController from '../controllers/FilesController';
+import AuthController from '../controllers/AuthController';
 
 const router = express.Router();
 
@@ -35,8 +36,6 @@ router.get('/users/me', UsersController.getMe);
 // POST /users
 router.post('/users', UsersController.postNew);
 
-// ------------- FilesController Endpoints ------------- \\
-
 // GET /files/:id
 router.get('/files/:id', FilesController.getShow);
 
@@ -45,5 +44,22 @@ router.get('/files', FilesController.getIndex);
 
 // POST /files
 router.post('/files', FilesController.postUpload);
+
+// ------------- FilesController Endpoints ------------- \\
+
+// PUT /files/:id/publish
+router.put('/files/:id/publish', FilesController.putPublish);
+
+// PUT /files/:id/publish
+router.put('/files/:id/publish', FilesController.putUnpublish);
+
+// GET /files/:id/data
+router.get('/files/:id/data', FilesController.getFile);
+
+// GET /files/:id
+router.get('/files/:id', FilesController.getShow);
+
+// GET /files
+router.get('/files', FilesController.getIndex);
 
 export default router;
