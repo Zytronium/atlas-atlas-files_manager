@@ -152,7 +152,7 @@ class FilesController {
       userId: user._id,
     });
     if (!file) {
-      res.status(404).json({ error: 'Not found' });
+      return res.status(404).json({ error: 'Not found' });
     }
     // Updates isPublic
     await dbclient.db.collection('files').updateOne(
