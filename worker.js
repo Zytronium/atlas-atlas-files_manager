@@ -4,7 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import imageThumbnail from 'image-thumbnail';
 import dotenv from 'dotenv';
-import dbClient from '../utils/db';
+import dbClient from './utils/db';
 
 dotenv.config({ quiet: true });
 

@@ -55,10 +55,4 @@ router.put('/files/:id/unpublish', FilesController.putUnpublish);
 // GET /files/:id/data
 router.get('/files/:id/data', FilesController.getFile);
 
-// GET /files/:id
-router.get('/files/:id', FilesController.getShow);
-
-// GET /files
-router.get('/files', FilesController.getIndex);
-
 export default router;
