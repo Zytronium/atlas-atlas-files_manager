@@ -9,6 +9,7 @@ import path from 'path';
 import dotenv from 'dotenv';
 import AuthController from './AuthController';
 import dbclient from '../utils/db';
+import fileQueue from '../queues/fileQueue';
 
 dotenv.config({ quiet: true });
 
@@ -68,6 +69,13 @@ class FilesController {
       fileDoc.localPath = filePath;
     }
     const result = await dbclient.db.collection('files').insertOne(fileDoc);
+
+    if (type === 'image') {
+      await fileQueue.add({
+        userId: user._id.toString(),
+        fileId: result.insertedId.toString(),
+      });
+    }
     const response = {
       id: result.insertedId,
       userId: fileDoc.userId,
