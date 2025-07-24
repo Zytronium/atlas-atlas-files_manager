@@ -50,7 +50,7 @@ router.get('/files/:id', FilesController.getShow);
 router.put('/files/:id/publish', FilesController.putPublish);
 
 // PUT /files/:id/publish
-router.put('/files/:id/publish', FilesController.putUnpublish);
+router.put('/files/:id/unpublish', FilesController.putUnpublish);
 
 // GET /files/:id/data
 router.get('/files/:id/data', FilesController.getFile);

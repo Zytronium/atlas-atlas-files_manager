@@ -6,9 +6,10 @@ import { v4 as uuidv4 } from 'uuid';
 import { ObjectId } from 'mongodb';
 import fs from 'fs';
 import path from 'path';
+import dotenv from 'dotenv';
 import AuthController from './AuthController';
 import dbclient from '../utils/db';
-import dotenv from "dotenv";
+
 dotenv.config({ quiet: true });
 
 const FOLDER_PATH = process.env.FOLDER_PATH || '/tmp/files_manager';
@@ -208,10 +209,12 @@ class FilesController {
 
   static async getFile(req, res) {
     const user = await AuthController.getUserFromToken(req.headers['x-token']);
+    const { id: fileId } = req.params;
+    const { size } = req.query;
+    const validSizes = ['100', '250', '500'];
     if (!user) {
       return res.status(404).json({ error: 'Unauthorized' });
     }
-    const fileId = req.params.id;
     if (!ObjectId.isValid(fileId)) {
       return res.status(404).json({ error: 'Not found' });
     }
@@ -227,8 +230,15 @@ class FilesController {
     if (file.type === 'folder') {
       return res.status(400).json({ error: "A folder doesn't have content" });
     }
+    let filePath = file.localPath;
+    if (size && validSizes.includes(size)) {
+      const ext = path.extname(filePath);
+      const base = path.basename(filePath, ext);
+      const dir = path.dirname(filePath);
+      filePath = path.join(dir, `${base}_${size}${ext}`);
+    }
     try {
-      const fileData = await fs.promises.readFile(file.localPath);
+      const fileData = await fs.promises.readFile(filePath);
       const mimeType = file.type === 'image' ? 'image/*' : 'application/octet-stream';
       res.setHeader('Content-Type', mimeType);
       return res.status(200).send(fileData);
