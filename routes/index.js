@@ -5,7 +5,6 @@
  */
 import express from 'express';
 import AppController from '../controllers/AppController';
-import AuthController from '../controllers/AuthController';
 import UsersController from '../controllers/UsersController';
 import FilesController from '../controllers/FilesController';
 import AuthController from '../controllers/AuthController';
@@ -36,16 +35,16 @@ router.get('/users/me', UsersController.getMe);
 // POST /users
 router.post('/users', UsersController.postNew);
 
-// GET /files/:id
-router.get('/files/:id', FilesController.getShow);
-
-// GET /files
-router.get('/files', FilesController.getIndex);
+// ------------- FilesController Endpoints ------------- \\
 
 // POST /files
 router.post('/files', FilesController.postUpload);
 
-// ------------- FilesController Endpoints ------------- \\
+// GET /files
+router.get('/files', FilesController.getIndex);
+
+// GET /files/:id
+router.get('/files/:id', FilesController.getShow);
 
 // PUT /files/:id/publish
 router.put('/files/:id/publish', FilesController.putPublish);

@@ -7,7 +7,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import routes from './routes/index.js';
 
-dotenv.config();
+dotenv.config({ quiet: true });
 
 const app = express();
 const port = process.env.PORT || 5000;

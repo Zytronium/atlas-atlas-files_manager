@@ -9,7 +9,7 @@ import path from 'path';
 import AuthController from './AuthController';
 import dbclient from '../utils/db';
 import dotenv from "dotenv";
-dotenv.config();
+dotenv.config({ quiet: true });
 
 const FOLDER_PATH = process.env.FOLDER_PATH || '/tmp/files_manager';
 
@@ -141,7 +141,7 @@ class FilesController {
 
   static async putPublish(req, res) {
     // Token check
-    const user = await AuthController.getUserFromToken(req);
+    const user = await AuthController.getUserFromToken(req.headers['x-token']);
     if (!user) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -176,7 +176,7 @@ class FilesController {
   }
 
   static async putUnpublish(req, res) {
-    const user = await AuthController.getUserFromToken(req);
+    const user = await AuthController.getUserFromToken(req.headers['x-token']);
     if (!user) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -207,7 +207,7 @@ class FilesController {
   }
 
   static async getFile(req, res) {
-    const user = await AuthController.getUserFromToken(req);
+    const user = await AuthController.getUserFromToken(req.headers['x-token']);
     if (!user) {
       return res.status(404).json({ error: 'Unauthorized' });
     }
