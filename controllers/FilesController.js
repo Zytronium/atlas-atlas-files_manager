@@ -76,9 +76,6 @@ class FilesController {
       isPublic: fileDoc.isPublic,
       parentId: fileDoc.parentId,
     };
-    if (fileDoc.localPath) {
-      response.localPath = fileDoc.localPath;
-    }
     return res.status(201).json(response);
   }
 
