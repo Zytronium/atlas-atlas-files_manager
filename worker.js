@@ -1,19 +1,9 @@
-import Bull from 'bull';
 import { ObjectId } from 'mongodb';
 import fs from 'fs';
 import path from 'path';
 import imageThumbnail from 'image-thumbnail';
-import dotenv from 'dotenv';
 import dbClient from './utils/db';
-
-dotenv.config({ quiet: true });
-
-const fileQueue = new Bull('fileQueue', {
-  redis: {
-    host: process.env.REDIS_HOST || '127.0.0.1',
-    port: parseInt(process.env.REDIS_PORT || '6379', 10),
-  },
-});
+import fileQueue from './queues/fileQueue';
 
 fileQueue.process(async (job) => {
   const { fileId, userId } = job.data;
