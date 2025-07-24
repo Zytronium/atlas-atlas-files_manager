@@ -6,7 +6,7 @@ import imageThumbnail from 'image-thumbnail';
 import dotenv from 'dotenv';
 import dbClient from '../utils/db';
 
-dotenv.config();
+dotenv.config({ quiet: true });
 
 const fileQueue = new Bull('fileQueue', {
   redis: {
